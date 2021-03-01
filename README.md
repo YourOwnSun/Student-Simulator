@@ -1,4 +1,3 @@
 # Student-Simulator
 Game hopefuly good
-sss
-fffffffffffff
+cout << "Hello world!" << endl;
