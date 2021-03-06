@@ -15,7 +15,7 @@ public class ObjectControll : MonoBehaviour
 
     private void OnMouseDrag()
     {
-        Vector3 ScreenPosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, cameraZDistance*3);
+        Vector3 ScreenPosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, cameraZDistance);
         Vector3 NewWorldPosition = mainCamera.ScreenToWorldPoint(ScreenPosition);
         transform.position = NewWorldPosition;
     }
