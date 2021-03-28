@@ -5,17 +5,8 @@ using UnityEngine;
 public class CameraControl : MonoBehaviour
 {
     float dragSpeed = 75.0f;
-    float cornerSpeed = 8.0f;
-    int boundary = 20;
-    int width;
-    int height;
 
-    void Start()
-    {
-        width = Screen.width;
-        height = Screen.height;
-
-    }
+    void Start() {}
 
     // Update is called once per frame
     void Update()
@@ -27,28 +18,6 @@ public class CameraControl : MonoBehaviour
                 transform.position -= new Vector3(Input.GetAxisRaw("Mouse X") * Time.deltaTime * dragSpeed,
                                            0.0f, Input.GetAxisRaw("Mouse Y") * Time.deltaTime * dragSpeed);
             }
-        }
-        if (Input.mousePosition.x > width - boundary)
-        {
-            transform.position += new Vector3(Time.deltaTime * cornerSpeed,
-                                       0.0f, 0.0f);
-        }
-
-        if (Input.mousePosition.x < 0 + boundary)
-        {
-            transform.position -= new Vector3(Time.deltaTime * cornerSpeed,
-                                       0.0f, 0.0f);
-        }
-
-        if (Input.mousePosition.y > height - boundary)
-        {
-            transform.position += new Vector3(0.0f, 0.0f, Time.deltaTime * cornerSpeed);
-        }
-
-        if (Input.mousePosition.y < 0 + boundary)
-        {
-            transform.position -= new Vector3(0.0f, 0.0f,
-                                       Time.deltaTime * cornerSpeed);
         }
     }
 }
