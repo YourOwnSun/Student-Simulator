@@ -24,6 +24,7 @@ public class DragAndDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
             m_DraggingPlane = canvas.transform as RectTransform;
 
         SetDraggedPosition(eventData);
+        transform.SetAsLastSibling();
     }
 
     public void OnDrag(PointerEventData data)
@@ -47,7 +48,7 @@ public class DragAndDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        
+        transform.SetAsFirstSibling();
     }
 
     static public T FindInParents<T>(GameObject go) where T : Component

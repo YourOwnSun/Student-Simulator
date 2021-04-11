@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 public class GraphicRaycasterManager : MonoBehaviour
 {
-    GraphicRaycaster m_Raycaster;
+   /* GraphicRaycaster m_Raycaster;
     PointerEventData m_PointerEventData;
     EventSystem m_EventSystem;
 
@@ -39,5 +39,5 @@ public class GraphicRaycasterManager : MonoBehaviour
                 Debug.Log("Hit " + result.gameObject.name);
             }
         }
-    }
+    }*/
 }
