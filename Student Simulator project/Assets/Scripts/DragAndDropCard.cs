@@ -3,12 +3,19 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(Image))]
-public class DragAndDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+public class DragAndDropCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     public bool dragOnSurfaces = true;
-
     
     private RectTransform m_DraggingPlane;
+    private CanvasGroup canvasGroup;
+    private GameObject boardPanel;
+
+    private void Start()
+    {
+        canvasGroup = GetComponent<CanvasGroup>();
+        boardPanel = GameObject.Find("BoardPanel");
+    }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
@@ -17,6 +24,9 @@ public class DragAndDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
             return;
 
         // We have clicked something that can be dragged.
+        eventData.pointerDrag.transform.SetParent(boardPanel.transform);
+
+        canvasGroup.blocksRaycasts = false;
         
         if (dragOnSurfaces)
             m_DraggingPlane = transform as RectTransform;
@@ -48,6 +58,7 @@ public class DragAndDrop : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
 
     public void OnEndDrag(PointerEventData eventData)
     {
+        canvasGroup.blocksRaycasts = true;
         transform.SetAsFirstSibling();
     }
 
