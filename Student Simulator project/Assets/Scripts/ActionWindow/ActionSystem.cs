@@ -72,6 +72,11 @@ public class ActionSystem : MonoBehaviour
     private void CardSlot1_OnCardDragged(object sender, CardSlot.OnCardEventArgs e)
     {
         RemoveCard(0);
+        cardSlot2.transform.localScale = new Vector3(0, 0, 0);
+        cardSlot3.transform.localScale = new Vector3(0, 0, 0);
+        cardSlot4.transform.localScale = new Vector3(0, 0, 0);
+        cardSlot5.transform.localScale = new Vector3(0, 0, 0);
+        cardSlot6.transform.localScale = new Vector3(0, 0, 0);
         //............
     }
 
@@ -103,7 +108,12 @@ public class ActionSystem : MonoBehaviour
     private void CardSlot1_OnCardDropped(object sender, CardSlot.OnCardEventArgs e)
     {
         AddCard(e.card, 0);
-        //.........
+        cardSlot2.transform.localScale = new Vector3(1, 1, 1);
+        cardSlot3.transform.localScale = new Vector3(1, 1, 1);
+        cardSlot4.transform.localScale = new Vector3(1, 1, 1);
+        cardSlot5.transform.localScale = new Vector3(1, 1, 1);
+        cardSlot6.transform.localScale = new Vector3(1, 1, 1);
+        //.......
     }
 
     public bool ContainsCard(Card card)
@@ -125,7 +135,6 @@ public class ActionSystem : MonoBehaviour
         for(int i = 0; i < AMOUNT_OF_SLOTS; ++i) 
         {
             Debug.Log(cardList[i]);
-            Debug.Log(i);
         }
     }
 
@@ -136,7 +145,6 @@ public class ActionSystem : MonoBehaviour
         for (int i = 0; i < AMOUNT_OF_SLOTS; ++i)
         {
             Debug.Log(cardList[i]);
-            Debug.Log(i);
         }
     }
 

@@ -19,6 +19,7 @@ public class DragAndDropCard : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         canvasGroup = GetComponent<CanvasGroup>();
         boardPanel = GameObject.Find("BoardPanel");
         card = GetComponent<CardDisplay>().card;
+        startingPosition = transform.position;
     }
 
     public void OnBeginDrag(PointerEventData eventData)
@@ -28,10 +29,14 @@ public class DragAndDropCard : MonoBehaviour, IBeginDragHandler, IDragHandler, I
             return;
 
         // We have clicked something that can be dragged.
-        if(transform.parent.name != "BoardPanel") 
-        {      
+        if (transform.parent.name != "BoardPanel")
+        {
             parentSlot = transform.parent.GetComponent<CardSlot>();
             parentSlot.CardDragged();
+        }
+        else 
+        {
+            startingPosition = transform.position;
         }
 
         eventData.pointerDrag.transform.SetParent(boardPanel.transform);
@@ -43,7 +48,7 @@ public class DragAndDropCard : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         else
             m_DraggingPlane = canvas.transform as RectTransform;
 
-        startingPosition = transform.position;
+        
 
         SetDraggedPosition(eventData);
         transform.SetAsLastSibling();
