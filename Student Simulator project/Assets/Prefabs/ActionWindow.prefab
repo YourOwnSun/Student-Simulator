@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 947507956759347964}
   - component: {fileID: 6275377385329348345}
   - component: {fileID: 5934989021494352532}
+  - component: {fileID: 3367767434028239854}
   m_Layer: 5
   m_Name: CardSlot3
   m_TagString: Untagged
@@ -28,7 +29,7 @@ RectTransform:
   m_GameObject: {fileID: 603761445743281124}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.1, y: 1.1, z: 1.1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3188179141796504924}
   m_RootOrder: 5
@@ -87,6 +88,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e760611a83e20ac438a26ae686656042, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!225 &3367767434028239854
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 603761445743281124}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1695248386615338016
 GameObject:
   m_ObjectHideFlags: 0
@@ -174,6 +187,7 @@ GameObject:
   - component: {fileID: 6701638556181673569}
   - component: {fileID: 8126032667956178895}
   - component: {fileID: 1635521734085388847}
+  - component: {fileID: 5076851626358376589}
   m_Layer: 5
   m_Name: CardSlot1
   m_TagString: Untagged
@@ -190,7 +204,7 @@ RectTransform:
   m_GameObject: {fileID: 2122211327508683696}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.1, y: 1.1, z: 1.1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3188179141796504924}
   m_RootOrder: 3
@@ -249,6 +263,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e760611a83e20ac438a26ae686656042, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!225 &5076851626358376589
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2122211327508683696}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &2520024535645613432
 GameObject:
   m_ObjectHideFlags: 0
@@ -261,6 +287,7 @@ GameObject:
   - component: {fileID: 2453612305012279640}
   - component: {fileID: 635254653438371013}
   - component: {fileID: 1634073401188638961}
+  - component: {fileID: 4082570421362222642}
   m_Layer: 5
   m_Name: CardSlot6
   m_TagString: Untagged
@@ -277,7 +304,7 @@ RectTransform:
   m_GameObject: {fileID: 2520024535645613432}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.1, y: 1.1, z: 1.1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3188179141796504924}
   m_RootOrder: 8
@@ -336,6 +363,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e760611a83e20ac438a26ae686656042, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!225 &4082570421362222642
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2520024535645613432}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &2873875564806264291
 GameObject:
   m_ObjectHideFlags: 0
@@ -481,6 +520,7 @@ GameObject:
   - component: {fileID: 837580163336171098}
   - component: {fileID: 8386307318278638639}
   - component: {fileID: 7364601310854660641}
+  - component: {fileID: 4116731798470721585}
   m_Layer: 5
   m_Name: ActionWindow
   m_TagString: Untagged
@@ -567,6 +607,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dragOnSurfaces: 1
+--- !u!114 &4116731798470721585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3370148235568556747}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 527c0a3203e169c4ca445c1ab89fa4d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4646475242750164675
 GameObject:
   m_ObjectHideFlags: 0
@@ -1216,6 +1268,7 @@ GameObject:
   - component: {fileID: 2531081530191005699}
   - component: {fileID: 234735726481471815}
   - component: {fileID: 5074835753151541011}
+  - component: {fileID: 8443058488682867151}
   m_Layer: 5
   m_Name: CardSlot4
   m_TagString: Untagged
@@ -1232,7 +1285,7 @@ RectTransform:
   m_GameObject: {fileID: 8876303791422118387}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.1, y: 1.1, z: 1.1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3188179141796504924}
   m_RootOrder: 6
@@ -1291,6 +1344,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e760611a83e20ac438a26ae686656042, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!225 &8443058488682867151
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8876303791422118387}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &8988704895349577541
 GameObject:
   m_ObjectHideFlags: 0
@@ -1303,6 +1368,7 @@ GameObject:
   - component: {fileID: 6015368886261125468}
   - component: {fileID: 8153638907797748304}
   - component: {fileID: 8760630698225575572}
+  - component: {fileID: 5580540122746015029}
   m_Layer: 5
   m_Name: CardSlot5
   m_TagString: Untagged
@@ -1319,7 +1385,7 @@ RectTransform:
   m_GameObject: {fileID: 8988704895349577541}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.1, y: 1.1, z: 1.1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3188179141796504924}
   m_RootOrder: 7
@@ -1378,6 +1444,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e760611a83e20ac438a26ae686656042, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!225 &5580540122746015029
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8988704895349577541}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &9211964955611793375
 GameObject:
   m_ObjectHideFlags: 0
@@ -1390,6 +1468,7 @@ GameObject:
   - component: {fileID: 4149172740519763493}
   - component: {fileID: 291007509363593133}
   - component: {fileID: 4027118407479161309}
+  - component: {fileID: 7278008518715102226}
   m_Layer: 5
   m_Name: CardSlot2
   m_TagString: Untagged
@@ -1406,7 +1485,7 @@ RectTransform:
   m_GameObject: {fileID: 9211964955611793375}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.1, y: 1.1, z: 1.1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3188179141796504924}
   m_RootOrder: 4
@@ -1465,3 +1544,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e760611a83e20ac438a26ae686656042, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!225 &7278008518715102226
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9211964955611793375}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0

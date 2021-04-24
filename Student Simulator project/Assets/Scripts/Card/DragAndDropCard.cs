@@ -6,15 +6,19 @@ using UnityEngine.UI;
 public class DragAndDropCard : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
     public bool dragOnSurfaces = true;
+    public Vector3 startingPosition;
     
     private RectTransform m_DraggingPlane;
     private CanvasGroup canvasGroup;
     private GameObject boardPanel;
+    private Card card;
+    private CardSlot parentSlot;
 
     private void Start()
     {
         canvasGroup = GetComponent<CanvasGroup>();
         boardPanel = GameObject.Find("BoardPanel");
+        card = GetComponent<CardDisplay>().card;
     }
 
     public void OnBeginDrag(PointerEventData eventData)
@@ -24,14 +28,22 @@ public class DragAndDropCard : MonoBehaviour, IBeginDragHandler, IDragHandler, I
             return;
 
         // We have clicked something that can be dragged.
+        if(transform.parent.name != "BoardPanel") 
+        {      
+            parentSlot = transform.parent.GetComponent<CardSlot>();
+            parentSlot.CardDragged();
+        }
+
         eventData.pointerDrag.transform.SetParent(boardPanel.transform);
 
         canvasGroup.blocksRaycasts = false;
-        
+
         if (dragOnSurfaces)
             m_DraggingPlane = transform as RectTransform;
         else
             m_DraggingPlane = canvas.transform as RectTransform;
+
+        startingPosition = transform.position;
 
         SetDraggedPosition(eventData);
         transform.SetAsLastSibling();
