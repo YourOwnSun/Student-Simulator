@@ -18,13 +18,21 @@ public class Trait
 {
     public Aspect aspect;
     public int level;
+}
 
-    public enum Aspect
-    {
-        Joker,
-        Club,
-        Heart,
-        Diamond,
-        Spade
-    }
+public enum Aspect
+{
+    Joker,
+    Club,
+    Heart,
+    Diamond,
+    Spade,
+    Book,
+    Place,
+    Ability,
+    Funds,
+    Person,
+    Acquaintance,
+    Job,
+    Class
 }

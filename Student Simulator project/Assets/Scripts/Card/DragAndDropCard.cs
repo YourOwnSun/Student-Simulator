@@ -79,6 +79,14 @@ public class DragAndDropCard : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         transform.SetAsFirstSibling();
     }
 
+    public void ReturnToStartingPosition()
+    {
+        transform.SetParent(boardPanel.transform);
+        canvasGroup.blocksRaycasts = true;
+        transform.SetAsFirstSibling();
+        transform.position = startingPosition;
+    }
+
     static public T FindInParents<T>(GameObject go) where T : Component
     {
         if (go == null) return null;

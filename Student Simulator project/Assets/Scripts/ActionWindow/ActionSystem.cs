@@ -6,6 +6,7 @@ public class ActionSystem : MonoBehaviour
 {
     private const int AMOUNT_OF_SLOTS = 6;
     private List<Card> cardList;
+    private MainSlot currentMainSlot = null;
 
     private CardSlot cardSlot1;
     private CardSlot cardSlot2;
@@ -13,6 +14,10 @@ public class ActionSystem : MonoBehaviour
     private CardSlot cardSlot4;
     private CardSlot cardSlot5;
     private CardSlot cardSlot6;
+
+    
+    public List<MainSlot> mainSlotRecepies;
+
 
     private void Start()
     {
@@ -108,13 +113,92 @@ public class ActionSystem : MonoBehaviour
     private void CardSlot1_OnCardDropped(object sender, CardSlot.OnCardEventArgs e)
     {
         AddCard(e.card, 0);
-        cardSlot2.transform.localScale = new Vector3(1, 1, 1);
-        cardSlot3.transform.localScale = new Vector3(1, 1, 1);
-        cardSlot4.transform.localScale = new Vector3(1, 1, 1);
-        cardSlot5.transform.localScale = new Vector3(1, 1, 1);
-        cardSlot6.transform.localScale = new Vector3(1, 1, 1);
-        //.......
+        
+
+
+        for(int i = 0; i < mainSlotRecepies.Count && currentMainSlot == null; ++i) 
+        {
+            for(int j = 0; j < cardList[0].traitList.Count; ++j) 
+            {
+                if (mainSlotRecepies[i].mainAspect == cardList[0].traitList[j].aspect) 
+                {
+                    currentMainSlot = mainSlotRecepies[i];
+                }
+            }
+        }
+
+        if(currentMainSlot == null) 
+        {
+            cardSlot1.transform.GetChild(0).GetComponent<DragAndDropCard>().ReturnToStartingPosition();
+            RemoveCard(0);
+            return;
+        }
+
+
+        
+
+        switch (currentMainSlot.conditions.Count)
+        {
+            case 2:
+                cardSlot2.transform.localScale = new Vector3(1, 1, 1);
+                break;
+            case 3:
+                cardSlot2.transform.localScale = new Vector3(1, 1, 1);
+                cardSlot3.transform.localScale = new Vector3(1, 1, 1);
+                break;
+            case 4:
+                cardSlot2.transform.localScale = new Vector3(1, 1, 1);
+                cardSlot3.transform.localScale = new Vector3(1, 1, 1);
+                cardSlot4.transform.localScale = new Vector3(1, 1, 1);
+                break;
+            case 5:
+                cardSlot2.transform.localScale = new Vector3(1, 1, 1);
+                cardSlot3.transform.localScale = new Vector3(1, 1, 1);
+                cardSlot4.transform.localScale = new Vector3(1, 1, 1);
+                cardSlot5.transform.localScale = new Vector3(1, 1, 1);
+                break;
+            case 6:
+                cardSlot2.transform.localScale = new Vector3(1, 1, 1);
+                cardSlot3.transform.localScale = new Vector3(1, 1, 1);
+                cardSlot4.transform.localScale = new Vector3(1, 1, 1);
+                cardSlot5.transform.localScale = new Vector3(1, 1, 1);
+                cardSlot6.transform.localScale = new Vector3(1, 1, 1);
+                break;
+            default:
+                Debug.LogError("Switch case error");
+                break;
+        }
+        
     }
+    /*
+    private bool CheckFirst(MainSlot recepie)
+    {
+        if (cardList[0].name == recepie.conditions[0].specificCard) 
+        {
+            return true;
+        }
+
+        bool traitConditionMet = false;
+
+        for(int i = 0; i < cardList[0].traitList.Count; ++i) 
+        {
+            for(int j = 0; j < recepie.conditions[0].prohibitedAspects.Count; ++i) 
+            {
+                if (cardList[0].traitList[i].aspect == recepie.conditions[0].prohibitedAspects[j]) 
+                {
+                    return false;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    private bool CheckAspects(MainSlot recepie) 
+    {
+        return false;
+    }
+    */
 
     public bool ContainsCard(Card card)
     {
