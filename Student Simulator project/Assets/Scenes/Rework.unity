@@ -334,7 +334,7 @@ PrefabInstance:
         type: 3}
       propertyPath: card
       value: 
-      objectReference: {fileID: 11400000, guid: d72d96327f6295a458a41fb152ee2cba,
+      objectReference: {fileID: 11400000, guid: 1f8e310cd36031f4d9316801f227c0cc,
         type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a8e299eb335b95e48b70240002d7aa8d, type: 3}
@@ -553,6 +553,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: ActionWindow
       objectReference: {fileID: 0}
+    - target: {fileID: 4116731798470721585, guid: 8d2d0ca4d7d324f419e679ea0de2b3a6,
+        type: 3}
+      propertyPath: cardPrefab
+      value: 
+      objectReference: {fileID: 136942364985517566, guid: a8e299eb335b95e48b70240002d7aa8d,
+        type: 3}
+    - target: {fileID: 4116731798470721585, guid: 8d2d0ca4d7d324f419e679ea0de2b3a6,
+        type: 3}
+      propertyPath: defaultNameText
+      value: "\u041E\u0431\u0449\u0435\u043D\u0438\u0435"
+      objectReference: {fileID: 0}
+    - target: {fileID: 4116731798470721585, guid: 8d2d0ca4d7d324f419e679ea0de2b3a6,
+        type: 3}
+      propertyPath: defaultDescriptionText
+      value: "\u041F\u043E\u043E\u0431\u0449\u0430\u0442\u044C\u0441\u044F \u0441
+        \u043B\u044E\u0434\u044C\u043C\u0438"
+      objectReference: {fileID: 0}
+    - target: {fileID: 4116731798470721585, guid: 8d2d0ca4d7d324f419e679ea0de2b3a6,
+        type: 3}
+      propertyPath: mainSlotRecepies.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4116731798470721585, guid: 8d2d0ca4d7d324f419e679ea0de2b3a6,
+        type: 3}
+      propertyPath: mainSlotRecepies.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: d7e4a92e7a146514f80b4fcc9aaf601b,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8d2d0ca4d7d324f419e679ea0de2b3a6, type: 3}
 --- !u!224 &1087689480 stripped
@@ -1088,7 +1116,7 @@ PrefabInstance:
         type: 3}
       propertyPath: card
       value: 
-      objectReference: {fileID: 11400000, guid: d72d96327f6295a458a41fb152ee2cba,
+      objectReference: {fileID: 11400000, guid: 3509ca64c830ea54583ddb1a433e81d0,
         type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a8e299eb335b95e48b70240002d7aa8d, type: 3}

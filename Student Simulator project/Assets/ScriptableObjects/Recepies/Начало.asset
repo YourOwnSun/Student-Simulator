@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d41ef2d193e01864db6b2e48c27a46dc, type: 3}
+  m_Name: "\u041D\u0430\u0447\u0430\u043B\u043E"
+  m_EditorClassIdentifier: 
+  mainAspect: 10
+  specificMainCard: "\u0418\u0432\u0430\u043D \u0418\u0432\u0430\u043D\u043E\u0432"
+  priority: 99
+  actionName: "\u041F\u043E\u0437\u043D\u0430\u043A\u043E\u043C\u0438\u0442\u044C\u0441\u044F
+    \u0441 \u0418\u0432\u0430\u043D\u043E\u043C"
+  actionDescription: "\u0418\u0432\u0430\u043D \u043A\u0440\u0443\u0442\u043E"
+  outputDescription: "\u0418\u0432\u0430\u043D \u0442\u0435\u043F\u0435\u0440\u044C
+    \u0437\u043D\u0430\u043A\u043E\u043C\u044B\u0439"
+  conditions: []
+  recepies: []
+  output:
+  - {fileID: 11400000, guid: 3509ca64c830ea54583ddb1a433e81d0, type: 2}

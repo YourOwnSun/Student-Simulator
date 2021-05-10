@@ -19,7 +19,7 @@ public class DragAndDropCard : MonoBehaviour, IBeginDragHandler, IDragHandler, I
         canvasGroup = GetComponent<CanvasGroup>();
         boardPanel = GameObject.Find("BoardPanel");
         card = GetComponent<CardDisplay>().card;
-        startingPosition = transform.position;
+        
     }
 
     public void OnBeginDrag(PointerEventData eventData)
@@ -34,10 +34,8 @@ public class DragAndDropCard : MonoBehaviour, IBeginDragHandler, IDragHandler, I
             parentSlot = transform.parent.GetComponent<CardSlot>();
             parentSlot.CardDragged();
         }
-        else 
-        {
-            startingPosition = transform.position;
-        }
+
+        startingPosition = transform.position;
 
         eventData.pointerDrag.transform.SetParent(boardPanel.transform);
 
@@ -83,8 +81,9 @@ public class DragAndDropCard : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     {
         transform.SetParent(boardPanel.transform);
         canvasGroup.blocksRaycasts = true;
-        transform.SetAsFirstSibling();
+        
         transform.position = startingPosition;
+        transform.SetAsFirstSibling();
     }
 
     static public T FindInParents<T>(GameObject go) where T : Component

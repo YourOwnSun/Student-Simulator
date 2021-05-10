@@ -39,7 +39,8 @@ public class CardSlot : MonoBehaviour, IDropHandler
         if (transform.childCount == 1)
         {           
             OnCardDragged?.Invoke(this, new OnCardEventArgs { card = card });
-            card = null;            
+            card = null;
+            Debug.Log("Card Dragged Event");
         }
     }
 

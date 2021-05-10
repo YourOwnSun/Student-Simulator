@@ -439,7 +439,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u041E\u043F\u044F\u0442\u044C \u0440\u0430\u0431\u043E\u0442\u0430"
+  m_text: "\u041D\u0430\u0437\u0432\u0430\u043D\u0438\u0435"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -619,6 +619,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 527c0a3203e169c4ca445c1ab89fa4d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainSlotRecepies: []
+  nameText: {fileID: 2512632597508074821}
+  descriptionText: {fileID: 3960815182338716935}
+  actionButton: {fileID: 5972230075147361387}
+  cardPrefab: {fileID: 136942364985517566, guid: a8e299eb335b95e48b70240002d7aa8d,
+    type: 3}
+  defaultNameText: 
+  defaultDescriptionText: 
 --- !u!1 &4646475242750164675
 GameObject:
   m_ObjectHideFlags: 0
@@ -1118,7 +1126,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 5887242757579663184}
   m_OnClick:
     m_PersistentCalls:

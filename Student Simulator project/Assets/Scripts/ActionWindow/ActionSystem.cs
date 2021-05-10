@@ -1,12 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class ActionSystem : MonoBehaviour
 {
     private const int AMOUNT_OF_SLOTS = 6;
     private List<Card> cardList;
     private MainSlot currentMainSlot = null;
+    private Recepie currentRecepie = null;
 
     private CardSlot cardSlot1;
     private CardSlot cardSlot2;
@@ -15,17 +18,29 @@ public class ActionSystem : MonoBehaviour
     private CardSlot cardSlot5;
     private CardSlot cardSlot6;
 
-    
+
     public List<MainSlot> mainSlotRecepies;
+    public TMPro.TextMeshProUGUI nameText;
+    public TMPro.TextMeshProUGUI descriptionText;
+    public GameObject actionButton;
+    public GameObject cardPrefab;
+
+    public string defaultNameText;
+    public string defaultDescriptionText;
 
 
     private void Start()
     {
         cardList = new List<Card>();
-        for (int i = 0; i < AMOUNT_OF_SLOTS; ++i) 
+        for (int i = 0; i < AMOUNT_OF_SLOTS; ++i)
         {
             cardList.Add(null);
         }
+
+        nameText.text = defaultNameText;
+        descriptionText.text = defaultDescriptionText;
+
+        actionButton = transform.Find("ActionButton").gameObject;
 
         cardSlot1 = transform.Find("CardSlot1").GetComponent<CardSlot>();
         cardSlot2 = transform.Find("CardSlot2").GetComponent<CardSlot>();
@@ -83,6 +98,8 @@ public class ActionSystem : MonoBehaviour
         cardSlot5.transform.localScale = new Vector3(0, 0, 0);
         cardSlot6.transform.localScale = new Vector3(0, 0, 0);
         //............
+        nameText.text = defaultNameText;
+        descriptionText.text = defaultDescriptionText;
     }
 
     private void CardSlot6_OnCardDropped(object sender, CardSlot.OnCardEventArgs e)
@@ -113,98 +130,155 @@ public class ActionSystem : MonoBehaviour
     private void CardSlot1_OnCardDropped(object sender, CardSlot.OnCardEventArgs e)
     {
         AddCard(e.card, 0);
-        
 
+        int priority = -1;
 
-        for(int i = 0; i < mainSlotRecepies.Count && currentMainSlot == null; ++i) 
+        Debug.Log(1);
+        for (int i = 0; i < mainSlotRecepies.Count; ++i)
         {
-            for(int j = 0; j < cardList[0].traitList.Count; ++j) 
+            Debug.Log(2);
+            for (int j = 0; j < e.card.traitList.Count; ++j)
             {
-                if (mainSlotRecepies[i].mainAspect == cardList[0].traitList[j].aspect) 
+                Debug.Log(3);
+                Debug.Log(mainSlotRecepies[i].mainAspect);
+                Debug.Log(e.card.traitList[j].aspect);
+                if (mainSlotRecepies[i].mainAspect == e.card.traitList[j].aspect && mainSlotRecepies[i].priority > priority)
                 {
+                    Debug.Log(4);
                     currentMainSlot = mainSlotRecepies[i];
+                    priority = currentMainSlot.priority;
                 }
             }
         }
 
-        if(currentMainSlot == null) 
-        {
-            cardSlot1.transform.GetChild(0).GetComponent<DragAndDropCard>().ReturnToStartingPosition();
-            RemoveCard(0);
-            return;
-        }
-
+      
 
         
+        if (currentMainSlot == null)
+        {
+            //cardSlot1.transform.GetChild(0).GetComponent<DragAndDropCard>().ReturnToStartingPosition();
+            RemoveCard(0);
+            Debug.Log("Current Main Slot == 0");
+            return;
+        }
+        
+
+
 
         switch (currentMainSlot.conditions.Count)
         {
+            case 1:
+                cardSlot2.transform.localScale = new Vector3(1, 1, 1);
+                break;
             case 2:
                 cardSlot2.transform.localScale = new Vector3(1, 1, 1);
+                cardSlot3.transform.localScale = new Vector3(1, 1, 1);
                 break;
             case 3:
                 cardSlot2.transform.localScale = new Vector3(1, 1, 1);
                 cardSlot3.transform.localScale = new Vector3(1, 1, 1);
+                cardSlot4.transform.localScale = new Vector3(1, 1, 1);
                 break;
             case 4:
                 cardSlot2.transform.localScale = new Vector3(1, 1, 1);
                 cardSlot3.transform.localScale = new Vector3(1, 1, 1);
                 cardSlot4.transform.localScale = new Vector3(1, 1, 1);
+                cardSlot5.transform.localScale = new Vector3(1, 1, 1);
                 break;
             case 5:
                 cardSlot2.transform.localScale = new Vector3(1, 1, 1);
                 cardSlot3.transform.localScale = new Vector3(1, 1, 1);
                 cardSlot4.transform.localScale = new Vector3(1, 1, 1);
                 cardSlot5.transform.localScale = new Vector3(1, 1, 1);
-                break;
-            case 6:
-                cardSlot2.transform.localScale = new Vector3(1, 1, 1);
-                cardSlot3.transform.localScale = new Vector3(1, 1, 1);
-                cardSlot4.transform.localScale = new Vector3(1, 1, 1);
-                cardSlot5.transform.localScale = new Vector3(1, 1, 1);
                 cardSlot6.transform.localScale = new Vector3(1, 1, 1);
                 break;
-            default:
-                Debug.LogError("Switch case error");
-                break;
+            
         }
-        
-    }
-    /*
-    private bool CheckFirst(MainSlot recepie)
-    {
-        if (cardList[0].name == recepie.conditions[0].specificCard) 
-        {
-            return true;
-        }
+        nameText.text = currentMainSlot.actionName;
+        descriptionText.text = currentMainSlot.actionDescription;
 
-        bool traitConditionMet = false;
-
-        for(int i = 0; i < cardList[0].traitList.Count; ++i) 
+        if (currentMainSlot.conditions.Count == 1)
         {
-            for(int j = 0; j < recepie.conditions[0].prohibitedAspects.Count; ++i) 
+            for (int i = 0; i < currentMainSlot.recepies.Count; ++i)
             {
-                if (cardList[0].traitList[i].aspect == recepie.conditions[0].prohibitedAspects[j]) 
+                if (checkRecepie(currentMainSlot.recepies[i]) && (currentRecepie == null || currentRecepie.priority < currentMainSlot.recepies[i].priority)) 
                 {
-                    return false;
+                    currentRecepie = currentMainSlot.recepies[i];
+                }
+            }
+
+            if(currentRecepie != null) 
+            {
+                nameText.text = currentRecepie.actionName;
+                descriptionText.text = currentRecepie.actionDescription;
+                actionButton.GetComponent<Button>().interactable = true;
+            }
+        }
+    }
+
+    public bool checkRecepie(Recepie recepie)
+    {
+        List<Trait> requirementsCheck = new List<Trait>();
+        foreach (var item in recepie.minimalRequirement)
+        {
+            requirementsCheck.Add(new Trait
+            {
+                aspect = item.aspect,
+                level = item.level
+            });
+        }
+
+
+        for (int i = 0; i < currentMainSlot.conditions.Count; ++i)
+        {
+            if (recepie.specificCards[i] != "" && (cardList[i + 1] == null || recepie.specificCards[i] != cardList[i + 1].name))
+            {
+                return false;
+            }
+            if (cardList[i + 1] != null) 
+            {
+                for (int j = 0; j < recepie.minimalRequirement.Count; ++j)
+                {
+                    for (int k = 0; k < cardList[i + 1].traitList.Count; ++k)
+                    {
+                        if (cardList[i + 1].traitList[k].aspect == recepie.minimalRequirement[j].aspect)
+                        {
+                            requirementsCheck[j].level -= cardList[i + 1].traitList[k].level;
+                        }
+                    }
                 }
             }
         }
-
-        return false;
+        for (int i = 0; i < requirementsCheck.Count; ++i)
+        {
+            if (requirementsCheck[i].level > 0)
+            {
+                return false;
+            }
+        }
+        return true;
     }
-
-    private bool CheckAspects(MainSlot recepie) 
+/*
+    public void ApplyRecepie() 
     {
-        return false;
+        for(int i = 0; i < currentMainSlot.conditions.Count; ++i) 
+        {
+            if(currentMainSlot.conditions[i].expire == false) 
+            {
+               GameObject newCard = Instantiate(cardPrefab, transform.position, transform.rotation, transform);
+               newCard.GetComponent<CardDisplay>().card = cardList[i];
+            }
+            RemoveCard(i);
+        }
+        descriptionText.text = currentRecepie.outputDescription;
     }
-    */
+*/
 
     public bool ContainsCard(Card card)
     {
-        for (int i = 0; i < AMOUNT_OF_SLOTS; ++i) 
+        for (int i = 0; i < AMOUNT_OF_SLOTS; ++i)
         {
-            if(cardList[i] != null && card.name == cardList[i].name) 
+            if (cardList[i] != null && card.name == cardList[i].name)
             {
                 return true;
             }
@@ -212,27 +286,41 @@ public class ActionSystem : MonoBehaviour
         return false;
     }
 
-    public void AddCard(Card card, int slot) 
+    public void AddCard(Card card, int slot)
     {
-        if(slot > -1 && slot < AMOUNT_OF_SLOTS && cardList[slot] == null) 
-            cardList[slot] = card; 
-        for(int i = 0; i < AMOUNT_OF_SLOTS; ++i) 
+        Debug.Log("Card added");
+        if (slot > -1 && slot < AMOUNT_OF_SLOTS && cardList[slot] == null) 
         {
-            Debug.Log(cardList[i]);
-        }
-    }
-
-    public void RemoveCard(int slot) 
-    {
-        if (slot > -1 && slot < AMOUNT_OF_SLOTS && cardList[slot] != null)
-            cardList[slot] = null;
+            cardList[slot] = card;
+        }  
         for (int i = 0; i < AMOUNT_OF_SLOTS; ++i)
         {
-            Debug.Log(cardList[i]);
+            //Debug.Log(cardList[i]);
+           // Debug.Log(i);
         }
     }
 
+    public void RemoveCard(int slot)
+    {
+        Debug.Log("Card removed");
+        if (slot > -1 && slot < AMOUNT_OF_SLOTS && cardList[slot] != null) 
+        {
+            cardList[slot] = null;
+        }          
+        for (int i = 0; i < AMOUNT_OF_SLOTS; ++i)
+        {
+            //Debug.Log(cardList[i]);
+            //Debug.Log(i);
+        }
+    }
+
+    public Recepie GetCurrentRecepie() { return currentRecepie; }
     private Card GetCard(int slot) { return cardList[slot]; }
 
     private void SetCard(Card newCard, int slot) { cardList[slot] = newCard; }
-}
+};
+
+
+
+
+

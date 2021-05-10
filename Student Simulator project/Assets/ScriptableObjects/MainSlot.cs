@@ -6,21 +6,24 @@ using UnityEngine;
 public class MainSlot : ScriptableObject
 {
     public Aspect mainAspect;
+    public string specificMainCard;
+    public int priority;
+
     public string actionName;
     public string actionDescription;
+    public string outputDescription;
 
     public List<Condition> conditions;
 
     public List<Recepie> recepies;
 
-
+    public List<Card> output;
 }
 
 [System.Serializable]
 public class  Condition
 {
     public List<Aspect> allowedAspects;
-    public List<Aspect> prohibitedAspects;
 
     public string slotName = "";
 
@@ -35,6 +38,10 @@ public class Recepie
     public List<string> specificCards;
 
     public int priority;
+
+    public string actionName;
+    public string actionDescription;
+    public string outputDescription;
 
     public List<Card> output;
 }
