@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028328, g: 0.22571322, b: 0.30692163, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -334,7 +334,7 @@ PrefabInstance:
         type: 3}
       propertyPath: card
       value: 
-      objectReference: {fileID: 11400000, guid: 1f8e310cd36031f4d9316801f227c0cc,
+      objectReference: {fileID: 11400000, guid: 3509ca64c830ea54583ddb1a433e81d0,
         type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a8e299eb335b95e48b70240002d7aa8d, type: 3}
@@ -585,13 +585,13 @@ PrefabInstance:
         type: 3}
       propertyPath: mainSlotRecepies.Array.data[0]
       value: 
-      objectReference: {fileID: 11400000, guid: d7e4a92e7a146514f80b4fcc9aaf601b,
+      objectReference: {fileID: 11400000, guid: 12b33a22536a33041a04cd7514302eff,
         type: 2}
     - target: {fileID: 4116731798470721585, guid: 8d2d0ca4d7d324f419e679ea0de2b3a6,
         type: 3}
       propertyPath: mainSlotRecepies.Array.data[1]
       value: 
-      objectReference: {fileID: 11400000, guid: 702b6cdffde4ea34d8afd16827138e9e,
+      objectReference: {fileID: 11400000, guid: fba8e5764a2370b4daeb392f384fff7b,
         type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8d2d0ca4d7d324f419e679ea0de2b3a6, type: 3}
@@ -734,7 +734,7 @@ PrefabInstance:
         type: 3}
       propertyPath: card
       value: 
-      objectReference: {fileID: 11400000, guid: 33c38357218177745a355438c49d94f8,
+      objectReference: {fileID: 11400000, guid: fc27df872781aa248b9b59ec4e74bbb3,
         type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a8e299eb335b95e48b70240002d7aa8d, type: 3}
@@ -1254,7 +1254,7 @@ PrefabInstance:
         type: 3}
       propertyPath: card
       value: 
-      objectReference: {fileID: 11400000, guid: 3509ca64c830ea54583ddb1a433e81d0,
+      objectReference: {fileID: 11400000, guid: c660a272504fab945aaf306fff9bc80f,
         type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a8e299eb335b95e48b70240002d7aa8d, type: 3}

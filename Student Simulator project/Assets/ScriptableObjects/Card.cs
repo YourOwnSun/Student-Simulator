@@ -34,5 +34,7 @@ public enum Aspect
     Person,
     Acquaintance,
     Job,
-    Class
+    Class,
+    Goal,
+    Ingredient
 }

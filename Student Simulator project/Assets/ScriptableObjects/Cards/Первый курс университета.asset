@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 382a08eb15b1a0a418b9bbdf6862c4b4, type: 3}
-  m_Name: "\u0421\u043F\u0430\u0434\u0435"
+  m_Name: "\u041F\u0435\u0440\u0432\u044B\u0439 \u043A\u0443\u0440\u0441 \u0443\u043D\u0438\u0432\u0435\u0440\u0441\u0438\u0442\u0435\u0442\u0430"
   m_EditorClassIdentifier: 
-  name: "\u0421\u043F\u0430\u0434\u0435"
-  description: "\u0423\u0445"
+  name: "\u041F\u0435\u0440\u0432\u044B\u0439 \u043A\u0443\u0440\u0441 \u0443\u043D\u0438\u0432\u0435\u0440\u0441\u0438\u0442\u0435\u0442\u0430"
+  description: 
   art: {fileID: 0}
   traitList:
-  - aspect: 4
-    level: 2
-  - aspect: 7
+  - aspect: 12
+    level: 1
+  - aspect: 11
     level: 1

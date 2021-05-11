@@ -12,32 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d41ef2d193e01864db6b2e48c27a46dc, type: 3}
   m_Name: New main slot
   m_EditorClassIdentifier: 
-  mainAspect: 7
+  mainAspect: 4
   specificMainCard: 
   priority: 0
-  actionName: "\u0427\u0442\u043E \u0436\u0435 \u0441\u043B\u0443\u0447\u0438\u0442\u044C\u0441\u044F?"
-  actionDescription: "\u041A\u0430\u043A \u0436\u0435 \u044D\u0442\u043E \u043E\u043F\u0438\u0441\u0430\u0442\u044C?"
+  actionName: 
+  actionDescription: 
   outputDescription: 
   slotName: 
-  expire: 1
-  conditions:
-  - allowedAspects: 0900000008000000
-    slotName: 
-    expire: 0
-  recepies:
-  - minimalRequirement:
-    - aspect: 8
-      level: 1
-    - aspect: 4
-      level: 2
-    specificCards:
-    - "\u0414\u0435\u043D\u044C\u0433\u0438"
-    priority: 1
-    actionName: "\u0410 \u0432\u043E\u0442 \u0447\u0442\u043E \u0441\u043B\u0443\u0447\u0438\u0442\u044C\u0441\u044F"
-    actionDescription: "\u0418 \u0442\u0430\u043A \u044D\u0442\u043E \u043E\u043F\u0438\u0441\u0430\u0442\u044C"
-    outputDescription: "\u041E\u043D\u043E \u0441\u043B\u0443\u0447\u0438\u043B\u043E\u0441\u044C"
-    output:
-    - {fileID: 11400000, guid: 3509ca64c830ea54583ddb1a433e81d0, type: 2}
-    - {fileID: 11400000, guid: 3509ca64c830ea54583ddb1a433e81d0, type: 2}
-    - {fileID: 11400000, guid: 1f8e310cd36031f4d9316801f227c0cc, type: 2}
+  expire: 0
+  conditions: []
+  recepies: []
   output: []
