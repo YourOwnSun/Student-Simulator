@@ -37,6 +37,8 @@ public class DragAndDropCard : MonoBehaviour, IBeginDragHandler, IDragHandler, I
 
         startingPosition = transform.position;
 
+        Debug.Log(startingPosition);
+
         eventData.pointerDrag.transform.SetParent(boardPanel.transform);
 
         canvasGroup.blocksRaycasts = false;
@@ -81,7 +83,11 @@ public class DragAndDropCard : MonoBehaviour, IBeginDragHandler, IDragHandler, I
     {
         transform.SetParent(boardPanel.transform);
         canvasGroup.blocksRaycasts = true;
-        
+
+        Debug.Log("return to starting position");
+
+        Debug.Log(startingPosition);
+
         transform.position = startingPosition;
         transform.SetAsFirstSibling();
     }

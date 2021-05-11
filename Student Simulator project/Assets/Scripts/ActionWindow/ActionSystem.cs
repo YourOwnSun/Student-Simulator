@@ -17,6 +17,7 @@ public class ActionSystem : MonoBehaviour
     private CardSlot cardSlot4;
     private CardSlot cardSlot5;
     private CardSlot cardSlot6;
+    private CardSlot outputCardSlot;
 
 
     public List<MainSlot> mainSlotRecepies;
@@ -48,6 +49,7 @@ public class ActionSystem : MonoBehaviour
         cardSlot4 = transform.Find("CardSlot4").GetComponent<CardSlot>();
         cardSlot5 = transform.Find("CardSlot5").GetComponent<CardSlot>();
         cardSlot6 = transform.Find("CardSlot6").GetComponent<CardSlot>();
+        outputCardSlot = transform.Find("OutputCardSlot").GetComponent<CardSlot>();
 
         cardSlot1.OnCardDropped += CardSlot1_OnCardDropped;
         cardSlot2.OnCardDropped += CardSlot2_OnCardDropped;
@@ -62,6 +64,22 @@ public class ActionSystem : MonoBehaviour
         cardSlot4.OnCardDragged += CardSlot4_OnCardDragged;
         cardSlot5.OnCardDragged += CardSlot5_OnCardDragged;
         cardSlot6.OnCardDragged += CardSlot6_OnCardDragged;
+        outputCardSlot.OnCardDragged += OutputCardSlot_OnCardDragged;
+    }
+
+    private void OutputCardSlot_OnCardDragged(object sender, CardSlot.OnCardEventArgs e)
+    {
+        Debug.Log(outputCardSlot.transform.childCount);
+
+        
+
+        if (outputCardSlot.transform.childCount == 1) 
+        {
+            cardSlot1.transform.localScale = new Vector3(1, 1, 1);
+            outputCardSlot.transform.GetChild(0).transform.SetParent(transform.parent);
+            outputCardSlot.transform.localScale = new Vector3(0, 0, 0);
+            descriptionText.text = defaultDescriptionText;
+        }
     }
 
     private void CardSlot6_OnCardDragged(object sender, CardSlot.OnCardEventArgs e)
@@ -87,19 +105,41 @@ public class ActionSystem : MonoBehaviour
     private void CardSlot2_OnCardDragged(object sender, CardSlot.OnCardEventArgs e)
     {
         RemoveCard(1);
+
+        currentRecepie = null;
+
+        nameText.text = defaultNameText;
+        descriptionText.text = defaultDescriptionText;
+        actionButton.GetComponent<Button>().interactable = false;
+
+        int priority = -1;
+
+        for (int i = 0; i < currentMainSlot.recepies.Count; ++i)
+        {
+            Debug.Log(currentMainSlot.recepies[i].actionName);
+            Debug.Log(checkRecepie(currentMainSlot.recepies[i]));
+            if (checkRecepie(currentMainSlot.recepies[i]) && currentMainSlot.recepies[i].priority > priority)
+            {
+                Debug.Log("recepie is correct");
+                currentRecepie = currentMainSlot.recepies[i];
+                priority = currentMainSlot.recepies[i].priority;
+            }
+        }
+
+        if (currentRecepie != null)
+        {
+            Debug.Log("button");
+            actionButton.GetComponent<Button>().interactable = true;
+            nameText.text = currentRecepie.actionName;
+            descriptionText.text = currentRecepie.actionDescription;
+        }
     }
 
     private void CardSlot1_OnCardDragged(object sender, CardSlot.OnCardEventArgs e)
     {
         RemoveCard(0);
-        cardSlot2.transform.localScale = new Vector3(0, 0, 0);
-        cardSlot3.transform.localScale = new Vector3(0, 0, 0);
-        cardSlot4.transform.localScale = new Vector3(0, 0, 0);
-        cardSlot5.transform.localScale = new Vector3(0, 0, 0);
-        cardSlot6.transform.localScale = new Vector3(0, 0, 0);
-        //............
-        nameText.text = defaultNameText;
-        descriptionText.text = defaultDescriptionText;
+
+        CleanSlots();
     }
 
     private void CardSlot6_OnCardDropped(object sender, CardSlot.OnCardEventArgs e)
@@ -125,6 +165,49 @@ public class ActionSystem : MonoBehaviour
     private void CardSlot2_OnCardDropped(object sender, CardSlot.OnCardEventArgs e)
     {
         AddCard(e.card, 1);
+
+        int allowedAspectFlag = 0;
+
+        for(int i = 0; i < e.card.traitList.Count; ++i) 
+        {
+            for(int j = 0; j < currentMainSlot.conditions[0].allowedAspects.Count; ++j) 
+            {
+                if (e.card.traitList[i].aspect == currentMainSlot.conditions[0].allowedAspects[j]) 
+                {
+                    allowedAspectFlag += 1;
+                }
+            }
+        }
+
+        if(allowedAspectFlag == 0) 
+        {
+            cardSlot1.transform.GetChild(0).GetComponent<DragAndDropCard>().ReturnToStartingPosition();
+            RemoveCard(0);
+            return;
+        }
+
+        int priority = -1;
+
+        for(int i = 0; i < currentMainSlot.recepies.Count; ++i) 
+        {
+            Debug.Log(currentMainSlot.recepies[i].actionName);
+            Debug.Log(checkRecepie(currentMainSlot.recepies[i]));
+            if (checkRecepie(currentMainSlot.recepies[i]) && currentMainSlot.recepies[i].priority > priority) 
+            {
+                Debug.Log("recepie is correct");
+                currentRecepie = currentMainSlot.recepies[i];
+                priority = currentMainSlot.recepies[i].priority;
+            }
+        }
+
+        if (currentRecepie != null)
+        {
+            Debug.Log("button");
+            actionButton.GetComponent<Button>().interactable = true;
+            nameText.text = currentRecepie.actionName;
+            descriptionText.text = currentRecepie.actionDescription;
+        }
+
     }
 
     private void CardSlot1_OnCardDropped(object sender, CardSlot.OnCardEventArgs e)
@@ -133,30 +216,21 @@ public class ActionSystem : MonoBehaviour
 
         int priority = -1;
 
-        Debug.Log(1);
         for (int i = 0; i < mainSlotRecepies.Count; ++i)
         {
-            Debug.Log(2);
             for (int j = 0; j < e.card.traitList.Count; ++j)
             {
-                Debug.Log(3);
-                Debug.Log(mainSlotRecepies[i].mainAspect);
-                Debug.Log(e.card.traitList[j].aspect);
                 if (mainSlotRecepies[i].mainAspect == e.card.traitList[j].aspect && mainSlotRecepies[i].priority > priority)
                 {
-                    Debug.Log(4);
                     currentMainSlot = mainSlotRecepies[i];
                     priority = currentMainSlot.priority;
                 }
             }
         }
 
-      
-
-        
         if (currentMainSlot == null)
         {
-            //cardSlot1.transform.GetChild(0).GetComponent<DragAndDropCard>().ReturnToStartingPosition();
+            cardSlot1.transform.GetChild(0).GetComponent<DragAndDropCard>().ReturnToStartingPosition();
             RemoveCard(0);
             Debug.Log("Current Main Slot == 0");
             return;
@@ -197,20 +271,13 @@ public class ActionSystem : MonoBehaviour
         nameText.text = currentMainSlot.actionName;
         descriptionText.text = currentMainSlot.actionDescription;
 
-        if (currentMainSlot.conditions.Count == 1)
+        if (currentMainSlot.conditions.Count == 0)
         {
-            for (int i = 0; i < currentMainSlot.recepies.Count; ++i)
-            {
-                if (checkRecepie(currentMainSlot.recepies[i]) && (currentRecepie == null || currentRecepie.priority < currentMainSlot.recepies[i].priority)) 
-                {
-                    currentRecepie = currentMainSlot.recepies[i];
-                }
-            }
+            Debug.Log(currentMainSlot.output.Count);
 
-            if(currentRecepie != null) 
+            if(currentMainSlot.output.Count != 0) 
             {
-                nameText.text = currentRecepie.actionName;
-                descriptionText.text = currentRecepie.actionDescription;
+                Debug.Log("button");
                 actionButton.GetComponent<Button>().interactable = true;
             }
         }
@@ -249,30 +316,136 @@ public class ActionSystem : MonoBehaviour
                 }
             }
         }
+        for (int j = 0; j < recepie.minimalRequirement.Count; ++j)
+        {
+            for (int k = 0; k < cardList[0].traitList.Count; ++k)
+            {
+                if (cardList[0].traitList[k].aspect == recepie.minimalRequirement[j].aspect)
+                {
+                    requirementsCheck[j].level -= cardList[0].traitList[k].level;
+                }
+            }
+        }
         for (int i = 0; i < requirementsCheck.Count; ++i)
         {
             if (requirementsCheck[i].level > 0)
             {
+                Debug.Log(requirementsCheck[i].aspect);
+                Debug.Log(requirementsCheck[i].level);
                 return false;
             }
         }
         return true;
     }
-/*
+
     public void ApplyRecepie() 
     {
-        for(int i = 0; i < currentMainSlot.conditions.Count; ++i) 
+        if(currentMainSlot == null) 
         {
-            if(currentMainSlot.conditions[i].expire == false) 
-            {
-               GameObject newCard = Instantiate(cardPrefab, transform.position, transform.rotation, transform);
-               newCard.GetComponent<CardDisplay>().card = cardList[i];
-            }
-            RemoveCard(i);
+            Debug.Log("Main slot is null on button press");
+            return;
         }
-        descriptionText.text = currentRecepie.outputDescription;
+
+        if(currentMainSlot.conditions.Count == 0) 
+        {
+            string tempText = currentMainSlot.outputDescription;
+
+            if(currentMainSlot.expire == false) 
+            {
+                GameObject newCard = Instantiate(cardPrefab, outputCardSlot.transform.position, outputCardSlot.transform.rotation, outputCardSlot.transform);
+                newCard.GetComponent<CardDisplay>().card = cardList[0];
+                newCard.GetComponent<CardDisplay>().UpdateCard();
+            }
+
+            for(int i = 0; i < currentMainSlot.output.Count; ++i) 
+            {
+                GameObject newCard = Instantiate(cardPrefab, outputCardSlot.transform.position, outputCardSlot.transform.rotation, outputCardSlot.transform);
+                newCard.GetComponent<CardDisplay>().card = currentMainSlot.output[i];
+                newCard.GetComponent<CardDisplay>().UpdateCard();
+            }
+            
+
+            Destroy(cardSlot1.transform.GetChild(0).gameObject);
+            RemoveCard(0);
+            CleanSlots();
+            cardSlot1.transform.localScale = new Vector3(0, 0, 0);
+
+            outputCardSlot.transform.localScale = new Vector3(1, 1, 1);
+
+            descriptionText.text = tempText;
+
+            actionButton.GetComponent<Button>().interactable = false;
+            return;
+        }
+
+        if(currentRecepie != null) 
+        {
+            if (currentMainSlot.expire == false)
+            {
+                GameObject newCard = Instantiate(cardPrefab, outputCardSlot.transform.position, outputCardSlot.transform.rotation, outputCardSlot.transform);
+                newCard.GetComponent<CardDisplay>().card = cardList[0];
+                newCard.GetComponent<CardDisplay>().UpdateCard();
+            }
+            Destroy(cardSlot1.transform.GetChild(0).gameObject);
+            RemoveCard(0);
+
+            for (int i = 0; i < currentMainSlot.conditions.Count; ++i)
+            {
+                if (currentMainSlot.conditions[i].expire == false)
+                {
+                    GameObject newCard = Instantiate(cardPrefab, outputCardSlot.transform.position, outputCardSlot.transform.rotation, outputCardSlot.transform);
+                    newCard.GetComponent<CardDisplay>().card = cardList[i + 1];
+                    newCard.GetComponent<CardDisplay>().UpdateCard();
+                }
+                RemoveCard(i + 1);
+            }
+
+            if (cardSlot2.transform.childCount != 0)
+            {
+                Destroy(cardSlot2.transform.GetChild(0).gameObject);
+            }
+            if (cardSlot3.transform.childCount != 0)
+            {
+                Destroy(cardSlot3.transform.GetChild(0).gameObject);
+            }
+            if (cardSlot4.transform.childCount != 0)
+            {
+                Destroy(cardSlot4.transform.GetChild(0).gameObject);
+            }
+            if (cardSlot5.transform.childCount != 0)
+            {
+                Destroy(cardSlot5.transform.GetChild(0).gameObject);
+            }
+            if (cardSlot6.transform.childCount != 0)
+            {
+                Destroy(cardSlot6.transform.GetChild(0).gameObject);
+            }
+
+            string tempText = currentRecepie.outputDescription;
+
+            for (int i = 0; i < currentRecepie.output.Count; ++i)
+            {
+                GameObject newCard = Instantiate(cardPrefab, outputCardSlot.transform.position, outputCardSlot.transform.rotation, outputCardSlot.transform);
+                newCard.GetComponent<CardDisplay>().card = currentRecepie.output[i];
+                newCard.GetComponent<CardDisplay>().UpdateCard();
+            }
+
+            
+
+            CleanSlots();
+
+            descriptionText.text = tempText;
+
+            cardSlot1.transform.localScale = new Vector3(0, 0, 0);
+
+            outputCardSlot.transform.localScale = new Vector3(1, 1, 1);
+
+            actionButton.GetComponent<Button>().interactable = false;
+            return;
+        }
+        
     }
-*/
+
 
     public bool ContainsCard(Card card)
     {
@@ -312,6 +485,23 @@ public class ActionSystem : MonoBehaviour
             //Debug.Log(cardList[i]);
             //Debug.Log(i);
         }
+    }
+
+    public void CleanSlots() 
+    {
+        cardSlot2.transform.localScale = new Vector3(0, 0, 0);
+        cardSlot3.transform.localScale = new Vector3(0, 0, 0);
+        cardSlot4.transform.localScale = new Vector3(0, 0, 0);
+        cardSlot5.transform.localScale = new Vector3(0, 0, 0);
+        cardSlot6.transform.localScale = new Vector3(0, 0, 0);
+        //............
+
+        currentRecepie = null;
+        currentMainSlot = null;
+
+        nameText.text = defaultNameText;
+        descriptionText.text = defaultDescriptionText;
+        actionButton.GetComponent<Button>().interactable = false;
     }
 
     public Recepie GetCurrentRecepie() { return currentRecepie; }

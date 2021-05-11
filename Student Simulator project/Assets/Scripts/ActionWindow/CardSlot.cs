@@ -27,16 +27,17 @@ public class CardSlot : MonoBehaviour, IDropHandler
         if(eventData.pointerDrag != null && transform.childCount == 0) 
         {
             card = eventData.pointerDrag.GetComponent<CardDisplay>().card;
+            eventData.pointerDrag.transform.SetParent(transform);
             OnCardDropped?.Invoke(this, new OnCardEventArgs { card = card }); 
 
-            eventData.pointerDrag.transform.SetParent(transform);
+            
             eventData.pointerDrag.transform.position = transform.position;                        
         }
     }
 
     public void CardDragged() 
     {
-        if (transform.childCount == 1)
+        if (transform.childCount > 0)
         {           
             OnCardDragged?.Invoke(this, new OnCardEventArgs { card = card });
             card = null;

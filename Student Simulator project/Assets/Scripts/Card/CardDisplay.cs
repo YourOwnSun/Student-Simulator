@@ -17,5 +17,8 @@ public class CardDisplay : MonoBehaviour
         nameText.text = card.name;
     }
 
-    
+    public void UpdateCard() 
+    {
+        nameText.text = card.name;
+    }
 }

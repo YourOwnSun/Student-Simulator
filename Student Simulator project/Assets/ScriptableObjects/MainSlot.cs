@@ -12,6 +12,9 @@ public class MainSlot : ScriptableObject
     public string actionName;
     public string actionDescription;
     public string outputDescription;
+    public string slotName = "";
+
+    public bool expire = false;
 
     public List<Condition> conditions;
 
