@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 public class CardDisplay : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class CardDisplay : MonoBehaviour
     public TMPro.TextMeshProUGUI nameText;
     public TMPro.TextMeshProUGUI descriptionText;
     public Image artImage;
+
+    public event EventHandler OnMouse1Pressed;
 
     // Start is called before the first frame update
     void Start()
@@ -20,5 +23,10 @@ public class CardDisplay : MonoBehaviour
     public void UpdateCard() 
     {
         nameText.text = card.name;
+    }
+
+    private void OnMouseDown()
+    {
+        
     }
 }
