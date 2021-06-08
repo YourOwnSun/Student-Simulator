@@ -18,6 +18,7 @@ public class ActionSystem : MonoBehaviour
     private CardSlot cardSlot5;
     private CardSlot cardSlot6;
     private CardSlot outputCardSlot;
+    private TMPro.TextMeshProUGUI timerText;
 
 
     public List<MainSlot> mainSlotRecepies;
@@ -50,6 +51,7 @@ public class ActionSystem : MonoBehaviour
         cardSlot5 = transform.Find("CardSlot5").GetComponent<CardSlot>();
         cardSlot6 = transform.Find("CardSlot6").GetComponent<CardSlot>();
         outputCardSlot = transform.Find("OutputCardSlot").GetComponent<CardSlot>();
+        timerText = transform.Find("TimerText").GetComponent<TMPro.TextMeshProUGUI>();
 
         cardSlot1.OnCardDropped += CardSlot1_OnCardDropped;
         cardSlot2.OnCardDropped += CardSlot2_OnCardDropped;
@@ -349,6 +351,17 @@ public class ActionSystem : MonoBehaviour
         if(currentMainSlot.conditions.Count == 0) 
         {
             string tempText = currentMainSlot.outputDescription;
+            float startingTIME = Timer.current.GetTime();
+
+            cardSlot1.transform.localScale = new Vector3(0, 0, 0);
+            cardSlot2.transform.localScale = new Vector3(0, 0, 0);
+
+            timerText.transform.localScale = new Vector3(1, 1, 1);
+
+            while (Timer.current.GetTime() < startingTIME + 30) 
+            {
+                
+            }
 
             if(currentMainSlot.expire == false) 
             {

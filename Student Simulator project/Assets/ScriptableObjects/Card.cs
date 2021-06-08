@@ -11,6 +11,8 @@ public class Card : ScriptableObject
     public Sprite art;
 
     public List<Trait> traitList;
+
+    public CardTimer cardTimer;
 }
 
 [System.Serializable]
@@ -18,6 +20,13 @@ public class Trait
 {
     public Aspect aspect;
     public int level;
+}
+
+[System.Serializable]
+public class CardTimer 
+{
+    public Card outputCard;
+    public float time;
 }
 
 public enum Aspect
