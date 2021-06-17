@@ -1049,7 +1049,8 @@ PrefabInstance:
       propertyPath: mainSlotRecepies.Array.data[1]
       value: 
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4798107696307273953, guid: 8d2d0ca4d7d324f419e679ea0de2b3a6, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 8d2d0ca4d7d324f419e679ea0de2b3a6, type: 3}
 --- !u!224 &1087689480 stripped
 RectTransform:
@@ -2494,10 +2495,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 6
+  m_fontSize: 5.4
   m_fontSizeBase: 6
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 4
   m_fontSizeMax: 72
   m_fontStyle: 0

@@ -10,6 +10,7 @@ public class ActionSystem : MonoBehaviour
     private List<Card> cardList;
     private MainSlot currentMainSlot = null;
     private Recepie currentRecepie = null;
+    private bool activeTimer = false;
 
     private CardSlot cardSlot1;
     private CardSlot cardSlot2;
@@ -356,12 +357,9 @@ public class ActionSystem : MonoBehaviour
             cardSlot1.transform.localScale = new Vector3(0, 0, 0);
             cardSlot2.transform.localScale = new Vector3(0, 0, 0);
 
-            timerText.transform.localScale = new Vector3(1, 1, 1);
+            //timerText.transform.localScale = new Vector3(1, 1, 1);
 
-            while (Timer.current.GetTime() < startingTIME + 30) 
-            {
-                
-            }
+            //activeTimer = true;////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
             if(currentMainSlot.expire == false) 
             {
@@ -443,8 +441,8 @@ public class ActionSystem : MonoBehaviour
                 newCard.GetComponent<CardDisplay>().UpdateCard();
             }
 
-            
 
+            timerText.transform.localScale = new Vector3(0, 0, 0);
             CleanSlots();
 
             descriptionText.text = tempText;
@@ -521,6 +519,14 @@ public class ActionSystem : MonoBehaviour
     private Card GetCard(int slot) { return cardList[slot]; }
 
     private void SetCard(Card newCard, int slot) { cardList[slot] = newCard; }
+
+    private void Update()
+    {
+        /*if (activeTimer) 
+        {
+            
+        }*/
+    }
 };
 
 
